@@ -5,5 +5,5 @@ manage.py
 templates
 menu/urls.py
 menu/views.py
-menu/templates/test.html
+menu/templates/menu/test.html
 menu/migrations/

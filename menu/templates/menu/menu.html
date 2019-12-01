@@ -1,0 +1,24 @@
+{% load menu_tags %}
+<ul>
+    {% for step in sequence %}
+        {% if step == 'down' %}
+            <ul>
+        {% elif step == 'up' %}
+            </ul>
+        {% elif step == 'open' %}
+            <b>
+        {% elif step == 'close' %}
+            </b>
+        {% else %}
+            {% if step|get_value:'content' %}
+                {% if step|get_value:'is_named' %}
+                    <li><a href="{% url step|get_value:'content' %}">{{ step|get_value:'name' }}</a></li>
+                {% else %}
+                    <li><a href="{{ step|get_value:'content' }}">{{ step|get_value:'name' }}</a></li>
+                {% endif %}
+            {% else %}
+                <li>{{ step|get_value:'name' }}</li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</ul>
