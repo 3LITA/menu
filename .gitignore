@@ -1,0 +1,9 @@
+.idea/
+untitled2/
+db.sqlite3
+manage.py
+templates
+menu/urls.py
+menu/views.py
+menu/templates/test.html
+menu/migrations/
