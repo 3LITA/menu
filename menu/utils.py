@@ -21,10 +21,6 @@ def has_parent(item):
         return parent_id
 
 
-def unmap(id_map, item_id):
-    return id_map[item_id]
-
-
 def find_active(items, current_url):
     active = items[0]  # root
 
@@ -39,7 +35,7 @@ def find_active(items, current_url):
             active = item
 
         if has_parent(item):
-            parent = unmap(id_map, item['parent_id'])
+            parent = id_map[item['parent_id']]
             parent['children'].append(item)
             id_map[parent['id']] = parent
 
@@ -52,7 +48,7 @@ def create_path(id_map, active_item):
 
     path.append(item)
     while has_parent(item):
-        item = unmap(id_map, item['parent_id'])
+        item = id_map[item['parent_id']]
         path.append(item)
 
     path.reverse()
@@ -70,5 +66,5 @@ def create_sequence(path):
         sequence.append('down')
         went_down += 1
         sequence += [child for child in path[i]['children'] if child not in path]
-    sequence += ['up' for i in range(went_down)]
+    sequence += ['up' for _ in range(went_down)]
     return sequence
